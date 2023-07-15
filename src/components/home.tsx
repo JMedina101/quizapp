@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameData, Activity, Round } from "../data";
+import { GameData } from "../data";
 
 function Home() {
   const [data, setData] = useState<GameData | null>(null);
@@ -38,11 +38,6 @@ function Home() {
       )}
     </div>
   );
-}
-
-// Helper function to check if the object is an Activity or a Round
-function isActivity(obj: Activity | Round): obj is Activity {
-  return (obj as Activity).activity_name !== undefined;
 }
 
 export default Home;
