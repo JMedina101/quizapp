@@ -7,7 +7,7 @@ function Home() {
 
   useEffect(() => {
     const fetchDummyData = (): Promise<GameData> => {
-      return fetch("/.netlify/functions/payload")
+      return fetch("/.netlify/functions/payload.js")
         .then((response) => response.json())
         .then((fetchedData) => {
           return fetchedData;
