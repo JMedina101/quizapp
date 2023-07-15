@@ -13,6 +13,7 @@ export interface Question {
   questions?: Question[];
   round_title?: string;
   rounding: string;
+  lmao: string;
 }
 
 export interface Round {
