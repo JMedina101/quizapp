@@ -1,6 +1,7 @@
-import { GameData } from "./../data";
+import { useEffect, useState } from "react";
+import { GameData, Activity, Round, Question } from "../data";
 
-const dummyData: GameData = {
+const initialData: GameData = {
   name: "My Game",
   heading: "Welcome to My Game",
   activities: [
@@ -68,34 +69,65 @@ const dummyData: GameData = {
 };
 
 function Home() {
-  // A use state  which stores the value fetched from the Api endpoint
-  // then sets the Heading display in JSX
-  const fetchDummyData = (): Promise<GameData> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(dummyData);
-      }, 1000); // Simulating an asynchronous operation with a delay of 1 second (1000 milliseconds)
-    });
-  };
+  const [data, setData] = useState<GameData | null>(null);
 
-  // Usage
-  fetchDummyData()
-    .then((data) => {
-      console.log("Fetched data:", data);
-      // Use the fetched data as needed
-    })
-    .catch((error) => {
-      // Handle the error
-    });
+  useEffect(() => {
+    const fetchDummyData = (): Promise<GameData> => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(initialData);
+        }, 1000); // Simulating an asynchronous operation with a delay of 1 second (1000 milliseconds)
+      });
+    };
+
+    fetchDummyData()
+      .then((fetchedData) => {
+        setData(fetchedData);
+      })
+      .catch((error) => {
+        // Handle the error
+      });
+  }, []);
 
   return (
     <div className="home-container card">
-      <div className="card-heading">
-        <h1 className="head-1 heading">heading 1</h1>
-        <h2 className="head-2 heading">heading 2</h2>
-      </div>
+      {data && (
+        <>
+          <div className="card-heading">
+            <h1 className="head-1 heading">{data.heading}</h1>
+            <h2 className="head-2 heading">{data.name}</h2>
+          </div>
+          <div className="activities-container">
+            {data.activities.map((activityOrRound, index) => (
+              <div key={index} className="activity">
+                {isActivity(activityOrRound) ? (
+                  <h3 className="activity-name">
+                    {activityOrRound.activity_name}
+                  </h3>
+                ) : (
+                  <h3 className="round-title">{activityOrRound.round_title}</h3>
+                )}
+                <ul className="questions-list">
+                  {activityOrRound.questions.map((question, questionIndex) => (
+                    <li key={questionIndex} className="question">
+                      <p>{question.stimulus}</p>
+                      <p>{`Is Correct? ${question.is_correct}`}</p>
+                      <p>{`Feedback: ${question.feedback}`}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
+}
+
+// Helper function to check if the object is an Activity or a Round
+function isActivity(obj: Activity | Round): obj is Activity {
+  return (obj as Activity).activity_name !== undefined;
 }
 
 export default Home;
