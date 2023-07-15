@@ -29,7 +29,7 @@ function Home() {
         // Handle the error
         console.error(error);
       });
-  });
+  }, []);
 
   return (
     <div className="home-container card">
