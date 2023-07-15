@@ -12,6 +12,7 @@ export interface Question {
   feedback: string;
   questions?: Question[];
   round_title?: string;
+  rounding: string;
 }
 
 export interface Round {
