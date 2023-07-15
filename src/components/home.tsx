@@ -1,3 +1,4 @@
+// home.js
 import { useEffect, useState } from "react";
 import { GameData } from "../data";
 
@@ -6,9 +7,7 @@ function Home() {
 
   useEffect(() => {
     const fetchDummyData = (): Promise<GameData> => {
-      return fetch(
-        "https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json"
-      )
+      return fetch("/.netlify/functions/payload")
         .then((response) => response.json())
         .then((fetchedData) => {
           return fetchedData;
