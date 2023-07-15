@@ -1,38 +1,237 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+.head-1 {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+.head-2 {
+  font-size: 3rem;
+}
+
+:root {
+  --canvasColor: #f1f9ff;
+  /*  --headingColor: #30a0fc; */
+  --headingColor: #2699fb;
+  --headingActivty: #2d9cfb;
+  --unActive: cccccc;
+  --border: #bce0fd;
+  /* --border: #ddeffe; */
+  --questions: #fcfdff;
+  --white: #fff;
+  --activity-border: #f3f9fe;
+  --grey: #d9d9d9;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.canvas {
+  height: 100vh;
+  background-color: var(--canvasColor);
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+.card {
+  text-align: center;
+  background-color: var(--white);
+
+  border: 2px solid var(--border);
+}
+.card-heading {
+  padding: 30px;
+}
+.heading {
+  color: var(--headingColor);
+}
+
+.activty {
+  background-color: var(--questions);
+  border: 1px solid var(--activity-border);
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--headingActivty);
+}
+.activty h2 {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--headingActivty);
+}
+
+.activity-link {
+  text-decoration: none;
+}
+
+.resultsContainer h2 {
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 30px;
+  color: var(--grey);
+}
+
+.question-card__container {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  width: 600px;
+}
+.question-Container {
+  background-color: var(--questions);
+  padding: 20px 30px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+
+  color: var(--headingColor);
+}
+.question {
+  margin: 0;
+  font-weight: 400;
+}
+.card-heading__container {
+  padding: 60px 30px;
+}
+.activity_head {
+  text-transform: uppercase;
+  text-align: justify;
+}
+.answer-block {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 80px;
+}
+.btn-questions {
+  background-color: transparent;
+  border: none;
+  color: var(--headingColor);
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.home_container h2 {
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 30px;
+  color: var(--headingActivty);
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.results-cards {
+  width: 300px;
+  margin: 0 auto;
+}
+.round-container {
+  padding: 20px;
+}
+.round-results {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.round-start-prompt {
+  animation-delay: 1.5s;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-name: slideOut;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.bolder {
+  font-weight: bolder;
+}
+/* mobile */
+/* media queries - for responsiveness */
+
+/* tablet */
+@media (max-width: 1080px) {
+  .question-card__container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .home-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .answer-block {
+    padding: 40px 30px;
+    justify-content: space-evenly;
+  }
+}
+@media (max-width: 650px) {
+  .head-1 {
+    font-size: 1rem;
+  }
+  .head-2 {
+    font-size: 2rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* css animations */
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+/* scroll ddesign */
+.result-cards {
+  height: 250px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--headingColor);
+  border-radius: 30px;
 }
