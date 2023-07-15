@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameData, Activity, Round, Question } from "../data";
+import { GameData, Activity, Round } from "../data";
 
 const initialData: GameData = {
   name: "My Game",
