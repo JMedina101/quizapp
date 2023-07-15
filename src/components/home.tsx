@@ -6,7 +6,9 @@ function Home() {
 
   useEffect(() => {
     const fetchDummyData = (): Promise<GameData> => {
-      return fetch("/api/payload.json")
+      return fetch(
+        "https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json"
+      )
         .then((response) => response.json())
         .then((fetchedData) => {
           return fetchedData;
